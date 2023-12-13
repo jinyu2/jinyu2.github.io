@@ -9,6 +9,7 @@ body {
 
 header {
     background: #333;
+    justify-content: space-between; /* This will push the image to the right */
     color: #fff;
     padding: 1rem 0;
     text-align: center;
