@@ -14,6 +14,11 @@ header {
     text-align: center;
 }
 
+header img {
+    width: 100px; /* Adjust the size of your logo */
+    height: auto;
+}
+
 nav ul {
     padding: 0;
     list-style: none;
