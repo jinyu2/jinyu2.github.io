@@ -7,23 +7,18 @@ body {
     color: #333;
 }
 
+body img {
+    width: 100px; /* Adjust the size of your logo */
+    height: auto;
+}
+
 header {
     background: #333;
-    justify-content: space-between; /* This will push the image to the right */
     color: #fff;
     padding: 1rem 0;
     text-align: center;
 }
 
-header img {
-    width: 100px; /* Adjust the size of your logo */
-    height: auto;
-}
-
-header h1 {
-    margin: 0;
-    padding: 0;
-}
 
 nav ul {
     padding: 0;
