@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<title>DS 5010 Spring 2024</title>
+
+<script src="site_libs/header-attrs-2.25/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Jin Yu</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="research.html">Research</a>
+</li>
+<li>
+  <a href="publications.html">Publications</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Courses
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="cs6220-fall2024.html">CS 6220 (Fall 2024)</a>
+    </li>
+    <li>
+      <a href="ds5010-spring2024.html">DS 5010 (Spring 2024)</a>
+    </li>
+    <li>
+      <a href="courses.html">All courses</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="data.html">Data</a>
+</li>
+<li>
+  <a href="jin-yu.pdf">CV</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+<h1 class="title toc-ignore">DS 5010 Spring 2024</h1>
+
+</div>
+
+
+<body>
+    <!-- This is the start of a commented section
+    <header>
+        <h1>DS 5010 Spring 2024</h1>
+        <h2> Khoury College of Computer Sciences, Northeastern University</h2>
+    </header>
+    This is the end of a commented section -->
+
+    <nav>
+        <ul>
+            <!--<li><a href="#instructor">Instructor</a></li>-->
+            <li><a href="#course-details">Course Details</a></li>
+            <li><a href="#General Policies">General Policies</a></li>
+            <li><a href="#Technology">Technology</a></li>
+            <li><a href="#Assignment">Assignment</a></li>
+            <li><a href="#Grade Scale">Grade Scale</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <!-- This is the start of a commented section
+        <section id="instructor">
+            <h2 class="blue-heading">Instructor</h2>
+            <img src="JinYu.jpg" alt="Logo">
+            <p>Jin Yu serves as a part-time lecturer at the Khoury College of Computer Sciences, Northeastern University. He holds a doctorate in Electrical and Computer Engineering from Stevens Institute of Technology, along with a bachelor’s degree in Electrical Engineering from Wuhan University, China. Jin's professional journey includes his role as the Director of Machine Learning at Philips/Signify Research, where he focused on driving business growth through AI, fostering public-private partnerships, and enhancing the AI intellectual property portfolio. In this role he collaborated with MIT CSAIL for 6 years. He currently holds the position of Head of Machine Learning at Teradyne.</p>
+        </section>
+        This is the end of a commented section -->
+
+        <section id="course-details">
+            <h2 class="blue-heading">Course Details</h2>
+            <h3>DS 5010: Introduction to Programming for Data Science</h3>
+            <p class="red-text">Special thanks to Professor Kelie Bemis to use the materials from her previous classes.</p>
+            <p><strong>Schedule:</strong> Wed 6:00pm - 9:20pm </p>
+            <p><strong>Location:</strong> Zoom + SH 220 </p>
+            <p><strong>Dates:</strong> Jan 10, 2024 - Apr 24, 2024 </p>
+            <p><strong>Instructor: </strong> Jin Yu | <a href="mailto:your.email@example.com">jin1.yu@northeastern.edu</a> | Office Hours: Microsoft Teams (see “Staff” tab of Piazza Resources for schedule) </p>
+            <p><strong>Piazza:</strong> Questions and lecture material are handled via Piazza | Sign up <a href="https://piazza.com/northeastern/spring2024/ds5010yu" target="_blank">https://piazza.com/northeastern/spring2024/ds5010yu</a></p>
+            <p><strong>Canvas:</strong> Course schedule and assignments are available via Canvas | Log in at <a href="https://northeastern.instructure.com/courses/175998" target="_blank">https://northeastern.instructure.com/courses/175998</a></p>
+            <p><strong>Teams:</strong> Office hours, Friday 11:30-12:30, are held virtually via Microsoft Teams | Please join <a href="https://teams.microsoft.com/l/meetup-join/19%3ameeting_YjgxZThiYjUtNjYxYi00MTg2LWI1NDctOWRmOWQzMzMzNzFl%40thread.v2/0?context=%7b%22Tid%22%3a%22a8eec281-aaa3-4dae-ac9b-9a398b9215e7%22%2c%22Oid%22%3a%2243ecf268-e9db-404b-b372-c58fc797049d%22%7d" target="_blank"> Professor Jin Yu's Office Hours (Microsoft Teams Meeting) </a></p>
+
+            <h3>Required Textbooks:</h3>
+            <ul>
+            <li><em>Learning Python</em>. Mark Lutz. O’Reilly Media, 2013.</li>
+            <li><em>Introduction to Algorithms, 4th edition</em>. Thomas Cormen, Charles Leiserson, Ronald Rivest and Clifford Stein, MIT Press, 2021.</li>
+            </ul>
+            <p>(Required reading excerpts will be made available on Piazza if they are not available online.)</p>
+
+            <h3>Supplementary Textbooks:</h3>
+            <ul>
+                <li><em>Python for Data Analysis: Data Wrangling with Pandas, NumPy, and IPython</em>. Wes McKinney, O’Reilly Media, 2013.</li>
+                <li><em>Learning Data Science</em>. Sam Lau, Joey Gonzalez, Deb Nolan, O’Reilly Media, 2023.</li>
+           </ul>
+               
+            <h3>Academic Integrity:</h3>
+            <p>Be familiar with the university’s academic integrity policy on cheating and plagiarism.</p>
+
+            <h3>Overview</h3>
+            <p>The course is a hands-on introduction to the fundamentals of programming, data structures, and algorithms for data sciences. The course encompasses programming basics such as functions, data structures, and algorithms; and their use in design and implementation of data science applications. Fundamentals of discrete mathematics for programming with data will be introduced where appropriate. The course will also introduce students to programming as a collaborative discipline. The course will develop programming experience in Python.</p>
+
+            <h3>Course Progression Requirement</h3>
+            <p>Students are required to get a B or above in the placement courses in order to progress into the core courses in the degree program. Students that do not achieve a B or better in the placement courses will be required to retake the courses.</p>
+
+            <h3>Topics</h3>
+            <ul>
+                <li>AI fundamentals</li>
+                <li>Pandas</li>
+                <li>Explotary data analysis</li>
+                <li>Data visualization</li>
+                <li>Control flow and program logic</li>
+                <li>Data types (lists, dictionaries, tuples, sets)</li>
+                <li>Data structures (arrays, queues, stacks, hash tables, trees, etc.)</li>
+                <li>Computational complexity</li>
+                <li>Files and I/O</li>
+                <li>Object-oriented programming</li>
+                <li>Number systems and representation (binary, hex, floating point)</li>
+                <li>Programming with vectors, arrays, and matrices</li>
+                <li>Source control and version control systems</li>
+                <li>Unit testing</li>
+            </ul>
+        </section>
+
+        <section id="General Policies">
+            <h2 class="blue-heading">General Policies</h2>
+            <h3>Name and pronouns</h3>
+            <p>Please let me know if you use a different name or pronouns from what appears the class roster. You may use a chosen name on Piazza and when submitting assignments and exams, but please be consistent and inform the instructors. The Northeastern LGBTQA Center can provide resources for changing your name and gender marker in the Northeastern system.</p>
+            <p>Please be kind and respectful to your fellow students regardless of identity or background. Students are expected to respect and use other students’ chosen names and pronouns. All students are expected to respect Northeastern’s commitment to diversity and inclusion.</p>
+                
+            <h3>Mental and physical health</h3>
+            <p>Please reach out to me as early as possible if you have difficulty keeping up with class material or completing assignments for personal reasons. I am able to provide more accommodations and options for you earlier in the semester than later in the semester when deadlines are looming. The We Care program at Northeastern University is another resource available to you in times of stress.</p>
+
+            <h3>Academic integrity</h3>
+            <p>All students are expected to abide by the university’s academic integrity policy. Plagiarized work will not receive points in this course and may be reported. Authorized use of outside resources (including but not limited to third-party code) must be cited.</p>
+
+            <h3>Title IX</h3>
+            <p>Northeastern University strictly prohibits discrimination or harassment on the basis of race, color, religion, religious creed, genetic information, sex, gender identity, sexual orientation, age, national origin, ancestry, veteran, or disability status. Please review Northeastern’s Title IX policy, which protects individuals from sex or gender-based discrimination, including discrimination based on gender-identity. Faculty members are required to report all allegations of sex/gender-based discrimination to the Title IX coordinator.</p>
+
+            <h3>Remote Instruction</h3>
+            <p><strong>IMPORTANT:</strong> Due to winter weather, I might be teaching remotely when it snows. Please see Canvas for Zoom links, and check Piazza for updates.</p>
+            <p>Students may participate remotely via online Zoom meetings. All course content can be accessed and completed remotely. However, some content and assignments require synchronous attendance (i.e., during the regularly scheduled class time in the Boston time zone), such as quizzes and project presentations. Students are still responsible for making sure they satisfy any college requirements for in-person enrollment.</p>
+            <p>The instructor may teach some class sessions fully remotely if the need arises.</p>
+            <p>Please do not come to class in-person if you are experiencing symptoms of COVID-19 or other flu-like illness.</p>
+        </section>
+
+        <section id="Technology">
+            <h2 class="blue-heading">Technology</h2>
+            <h3>Piazza</h3>
+            <p>Course administration, including all questions, course materials, and course announcements will be handled via Piazza.</p>
+            <p>Please do not email instructors or TAs directly – use Piazza for your questions and queries instead. This allows us to track all course-related correspondence in a single location.</p>
+            <p>General questions that may be useful to other students should be posted publicly to the whole class. If your question is specific to you, or includes a partial solution, then post it privately to instructors only.</p>
+            <p>Please see this <a href="https://stackoverflow.com/help/how-to-ask">Stackoverflow guide</a> for how to ask a good question.</p>
+
+            <h3>Canvas</h3>
+            <p>Assignments, quizzes, and grading will be administered via Canvas.</p>
+            <p>All assignments and quizzes will be posted on Canvas, and must be submitted on Canvas by the posted due date. Please do not email completed assignments or quizzes to instructors or TAs, or post them on Piazza.</p>
+
+            <h3>Zoom</h3>
+            <p>Classes will be broadcast synchronously via Zoom. Students can use Zoom to attend class virtually when in-person attendance is not possible.</p>
+
+            <h3>Microsoft Teams</h3>
+            <p>Virtual office hours will be held via Microsoft Teams. During scheduled office hours or by appointment, instructors and TAs will be available for live chat or video call on Microsoft Teams. You will be automatically added to a team for the course.</p>
+            <p>The instructor will hold office hours in the “General” channel, and TAs will hold office hours in the “TA Office” channel. The schedule for office hours can be found on Piazza Resources under the “Staff” tab.</p>
+        </section>
+
+        <section id="Assignment">
+            <h2 class="blue-heading">Assignments</h2>
+            <h3>Homework</h3>
+            <p>Homework assignments will be assigned every 1-2 weeks and must be completed individually. Each homework is due online via Canvas on the date scheduled on Canvas. (Please refer to the deadline on the actual assignment rather than the semester schedule, which is tentative and may not be updated if the assignment changes.)</p>
+            <p>Some aspects of the homework may be discussed with each other, but they should be completed individually, and your submitted work should be your own. Sharing of worked solutions will not be tolerated and will be considered cheating. Plagiarized solutions will receive a zero. Solutions with a very high degree of similarity with another past or current student’s will be considered plagiarism, and will be treated accordingly.</p>
+
+            <h3>Quizzes</h3>
+            <p>There will be occasional cumulative quizzes during the semester. All quizzes will be completed online via Canvas on the dates scheduled on Canvas, and will replace a class meeting.</p>
+
+            <h3>Project</h3>
+            <p>There will be a final programming project completed in small teams. Project guidelines will be posted on Piazza and discussed in class approximately midway through the semester.</p>
+
+            <h3>Late work and grading</h3>
+            <p>Late assignments will not typically be accepted. No-penalty extensions may be given on a case-by-case basis if requested at least 48 hours in advance of the due date with a reasonable justification.</p>
+            <p>Petitions for re-grades must be made in writing via Piazza private message to the instructor no later than 1 week after receiving the original grade. The petition must clearly explain why a re-grading is justified and why your answer(s) should be considered correct. The new grade may be lower than the original grade.</p>
+            <p>Before petitioning the instructor for a re-grade, students should first contact the grader to make sure they understand why they lost points.</p>
+        </section>
+
+        <section id="Grade Scale">
+            <h2 class="blue-heading">Grade Scale</h2>
+            <p>Students are required to get a B or above in the placement courses in order to progress into the core courses in the degree program. Students that do not achieve a B or better in the placement courses will be required to retake the courses.</p>
+            <p>The grade in this class is distributed as follows:</p>
+            <ul>
+                <li>Homework: 30%</li>
+                <li>Labs: 15%</li>
+                <li>Quizzes: 30%</li>
+                <li>Project: 25%</li>
+            </ul>
+            <p>Final grades will follow the following scale:</p>
+            <ul>
+                <li>A : <= 100.0</li>
+                <li>A-: < 94.0</li>
+                <li>B+: < 90.0</li>
+                <li>B : < 87.0</li>
+                <li>B-: < 84.0</li>
+                <li>C+: < 80.0</li>
+                <li>C : < 77.0</li>
+                <li>C-: < 74.0</li>
+            </ul>
+            <p>These scales are subject to change at the discretion of the instructor.</p>
+
+            <!-- List your projects here -->
+        </section>
+
+    </main>
+
+    <footer>
+        <p>Copyright &copy; 2023 by Dr. Jin Yu. All rights reserved.</p>
+    </footer>
+
+
+    <script src="script.js"></script>
+</body>
+</html>
